@@ -1,0 +1,74 @@
+name:                ed-starmap
+version:             0.1.0.0
+synopsis:            A KDT with a lot of star systems in it from the game Elite Dangerous.
+description:         Please see README.md
+homepage:            https://github.com/YellowOnion/ed-starmap
+license:             BSD3
+license-file:        LICENSE
+author:              Daniel Hill
+maintainer:          daniel@enemyplanet.geek.nz
+copyright:           2017 Author name here
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     ED.Types
+  build-depends:       base >= 4.7 && < 5
+                     , linear
+                     , aeson
+                     , text >= 1.2.0.6
+                     , kdt
+                     , deepseq
+                     , deepseq-generics >= 0.2
+  default-language:    Haskell2010
+
+executable ed-starmap-old
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , attoparsec
+                     , bytestring
+                     , linear
+                     , unordered-containers >= 0.2
+                     , ed-starmap
+                     , kdt
+  default-language:    Haskell2010
+
+executable ed-starmap
+  hs-source-dirs:      app
+  main-is:             StarMap.hs
+  ghc-options:         -threaded -O2 -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , deepseq
+                     , aeson
+                     , attoparsec
+                     , json-stream
+                     , ed-starmap
+                     , bytestring
+                     , linear
+                     , unordered-containers >= 0.2
+                     , vector
+                     , text
+                     , ed-starmap
+                     , kdt
+                     , formatting
+                     , parallel >= 3.2
+                     , clock
+  default-language:    Haskell2010
+
+test-suite ed-trader-test
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  build-depends:       base
+                     , ed-starmap
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/YellowOnion/ed-starmap
